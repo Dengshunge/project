@@ -11,8 +11,8 @@ DATA=/home/gosuncn/Desktop/convertLMDB
 TOOLS=/home/gosuncn/caffe/build/tools
 
 # 训练集和测试集的位置，记得，最后的 '/' 不要漏了
-TRAIN_DATA_ROOT=/home/gosuncn/Desktop/convertLMDB/Data/train_data
-VAL_DATA_ROOT=/home/gosuncn/Desktop/convertLMDB/Data/test_data
+TRAIN_DATA_ROOT=/home/gosuncn/Desktop/convertLMDB/plate_dataV6/train_data/
+VAL_DATA_ROOT=/home/gosuncn/Desktop/convertLMDB/plate_dataV6/test_data/
 
 # Set RESIZE=true to resize the images to 256x256. Leave as false if images have
 # already been resized using another tool.
@@ -43,6 +43,8 @@ fi
 echo "Creating train lmdb..."
 
 # EXAMPLE/ilsvrc12_train_lmdb中的ilsvrc12_train_lmdb为LMDB的命名，可以按需更改
+# DATA/train.txt要与自己生成train.txt名字相对应，不然得更改
+# test lmdb同理
 GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
@@ -51,14 +53,14 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     $DATA/train.txt \
     $EXAMPLE/train_lmdb
 
-echo "Creating val lmdb..."
+echo "Creating test lmdb..."
 
 GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
     $VAL_DATA_ROOT \
-    $DATA/val.txt \
+    $DATA/test.txt \
     $EXAMPLE/test_lmdb
 
 echo "Done."
