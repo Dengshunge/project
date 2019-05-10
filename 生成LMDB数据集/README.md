@@ -1,4 +1,4 @@
-用于生成LMDB文件，详情请见
+用于生成LMDB文件，[详情请见](https://www.cnblogs.com/dengshunge/p/10841108.html)
 
 使用“数据预处理.py”来生成train.txt和test.txt。**注意**，记得修改里面的路径。
 
